@@ -1,3 +1,4 @@
+import React from 'react'; // Добавила
 import clsx from 'clsx';
 
 // Сообщаем вебпаку, что этот файл использует это изображение.
@@ -6,9 +7,33 @@ import { Text } from 'src/ui/text';
 
 import styles from './Article.module.scss';
 
-export const Article = () => {
+interface ArticleProps {
+	fontFamily: string;
+	fontSize: string;
+	fontColor: string;
+	containerWidth: string;
+	backgroundColor: string;
+}
+
+export const Article: React.FC<ArticleProps> = ({
+	fontFamily,
+	fontSize,
+	fontColor,
+	containerWidth,
+	backgroundColor,
+}) => {
 	return (
-		<article className={clsx(styles.article)}>
+		<article
+			className={clsx(styles.article)}
+			style={
+				{
+					'--font-family': fontFamily,
+					'--font-size': fontSize,
+					'--font-color': fontColor,
+					'--container-width': containerWidth,
+					'--bg-color': backgroundColor,
+				} as React.CSSProperties
+			}>
 			<Text as='h1' size={45} weight={800} uppercase dynamicLite>
 				Портрет Западной Швейцарии
 			</Text>
